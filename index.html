@@ -383,56 +383,51 @@
 <!-- ===================== PORTFOLIO ===================== -->
 <div class="tab-content" id="tab-portfolio">
 
-  <div class="section full-width">
-    <div class="section-header"><div class="section-title">Portfolio Growth</div></div>
-  </div>
-
-  <!-- Gross Booked + New Added Accounts -->
+  <!-- Purchase Active + Balance Active -->
   <div class="section full-width">
     <div class="kpi-chart-row">
       <div class="kpi-sidebar">
         <div class="kpi-item">
-          <div class="kpi-item-label">Gross Booked Accounts (#)</div>
-          <div class="kpi-item-value">273,184</div>
+          <div class="kpi-item-label">Purchase Active Accounts (#)</div>
+          <div class="kpi-item-value">51,640</div>
+          <div class="kpi-item-note">Open accounts with at least one captured txn in last 30 days</div>
         </div>
         <div class="kpi-item">
-          <div class="kpi-item-label">New Added Accounts (#)</div>
-          <div class="kpi-item-value">4,712</div>
+          <div class="kpi-item-label">Balance Active Accounts (#)</div>
+          <div class="kpi-item-value">34,290</div>
+          <div class="kpi-item-note">Accounts that are balance active in the period</div>
         </div>
       </div>
       <div class="chart-area">
-        <div class="daily-bars" id="port-booked-bars"></div>
-        <div class="chart-line-overlay">
-          <svg viewBox="0 0 600 160" preserveAspectRatio="none">
-            <polyline points="0,120 20,118 40,115 60,112 80,110 100,108 120,105 140,102 160,100 180,97 200,94 220,92 240,89 260,86 280,84 300,81 320,78 340,76 360,73 380,70 400,68 420,65 440,62 460,60 480,57 500,54 520,52 540,49 560,46 580,44 600,42" fill="none" stroke="var(--c5)" stroke-width="2"/>
-          </svg>
-        </div>
+        <div class="daily-bars" id="port-active-bars"></div>
         <div class="legend-row" style="margin-top:8px;">
-          <div class="legend-chip"><div class="legend-color" style="background:var(--c1);"></div>Gross Booked Accounts (#)</div>
-          <div class="legend-chip"><div class="legend-color" style="background:var(--c2);opacity:0.5;"></div>Ever Purchase Active Accounts (#)</div>
-          <div class="legend-chip"><div style="width:12px;height:2px;background:var(--c5);border-radius:1px;"></div>Ever Purchase Activation Rate (%)</div>
+          <div class="legend-chip"><div class="legend-color" style="background:var(--c1);"></div>Purchase Active Accounts (#)</div>
+          <div class="legend-chip"><div class="legend-color" style="background:var(--c2);"></div>Balance Active Accounts (#)</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Ever Purchase Active Accounts -->
+  <!-- Closed + Voluntary Closed -->
   <div class="section full-width">
     <div class="kpi-chart-row">
       <div class="kpi-sidebar">
         <div class="kpi-item">
-          <div class="kpi-item-label">Ever Purchase Active Accounts (#)</div>
-          <div class="kpi-item-value">78,430</div>
+          <div class="kpi-item-label">Closed Accounts (#)</div>
+          <div class="kpi-item-value">1,530</div>
+          <div class="kpi-item-note">Count of closed accounts in the period</div>
         </div>
         <div class="kpi-item">
-          <div class="kpi-item-label">Ever Purchase Active Rate (%)</div>
-          <div class="kpi-item-value">28.70%</div>
+          <div class="kpi-item-label">Voluntary Closed Accounts (#)</div>
+          <div class="kpi-item-value">1,075</div>
+          <div class="kpi-item-note">Count of voluntary closed accounts in the period</div>
         </div>
       </div>
       <div class="chart-area">
-        <div class="daily-bars" id="port-newadded-bars"></div>
+        <div class="daily-bars" id="port-closed-bars"></div>
         <div class="legend-row" style="margin-top:8px;">
-          <div class="legend-chip"><div class="legend-color" style="background:var(--c2);"></div>New Added Accounts (#)</div>
+          <div class="legend-chip"><div class="legend-color" style="background:var(--c6);"></div>Closed Accounts (#)</div>
+          <div class="legend-chip"><div class="legend-color" style="background:var(--c4);"></div>Voluntary Closed Accounts (#)</div>
         </div>
       </div>
     </div>
@@ -959,8 +954,8 @@ genStacked('acq-cl-stacked', ['#4A90D9','#5BA8C8','#7EC8A0','#F5C451','#E8845C']
 genStacked('acq-apr-stacked', ['#4A90D9','#5BA8C8','#7EC8A0','#F5C451','#E8845C'], [30,25,20,15,10], 31);
 
 // Portfolio
-genStacked('port-booked-bars', ['#4A90D9','#5BA8C8'], [70,30], 31);
-genBars('port-newadded-bars', ['#5BA8C8'], [60], 31);
+genBars('port-active-bars', ['#4A90D9','#5BA8C8'], [60,40], 31);
+genBars('port-closed-bars', ['#D45B5B','#F5C451'], [15,10], 31);
 
 // Transaction
 genBars('txn-vol-bars', ['#4A90D9'], [100], 31);
