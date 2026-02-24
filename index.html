@@ -762,60 +762,6 @@
 
 </div>
 
-<!-- ===================== IF APPLICABLE ===================== -->
-<div class="tab-content" id="tab-if-applicable">
-
-  <div class="section full-width">
-    <div class="section-header">
-      <div class="section-title">If Applicable Metrics</div>
-    </div>
-    <div class="section-body">
-      <div style="font-size:12px;color:#718096;margin-bottom:16px;">These metrics are included only when applicable to the Shell program.</div>
-    </div>
-    <div class="kpi-chart-row">
-      <div class="kpi-sidebar">
-        <div class="kpi-item">
-          <div class="kpi-item-label">Net Balance Transfers (#)</div>
-          <div class="kpi-item-value">1,245</div>
-        </div>
-        <div class="kpi-item">
-          <div class="kpi-item-label">Net Balance Transfers ($)</div>
-          <div class="kpi-item-value">$3.8M</div>
-        </div>
-        <div class="kpi-item">
-          <div class="kpi-item-label">Net Cash Advances (#)</div>
-          <div class="kpi-item-value">312</div>
-        </div>
-        <div class="kpi-item">
-          <div class="kpi-item-label">Net Cash Advances ($)</div>
-          <div class="kpi-item-value">$624K</div>
-        </div>
-      </div>
-      <div class="chart-area">
-        <div class="daily-bars" id="appl-bars"></div>
-        <div class="legend-row" style="margin-top:8px;">
-          <div class="legend-chip"><div class="legend-color" style="background:var(--c1);"></div>Balance Transfers ($)</div>
-          <div class="legend-chip"><div class="legend-color" style="background:var(--c6);"></div>Cash Advances ($)</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Summary table -->
-  <div class="section full-width">
-    <div class="section-body" style="padding-top:8px;">
-      <table class="sigma-table">
-        <thead>
-          <tr><th>Metric</th><th class="num">Count (#)</th><th class="num">Volume ($)</th><th class="num">vs Prior Month</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Net Balance Transfers</td><td class="num">1,245</td><td class="num">$3,800,000</td><td class="num" style="color:#38a169;">+5.5%</td></tr>
-          <tr><td>Net Cash Advances</td><td class="num">312</td><td class="num">$624,000</td><td class="num" style="color:#38a169;">-8.2%</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
 
 
 </div><!-- end main-content -->
@@ -826,7 +772,6 @@
   <div class="bottom-tab" onclick="switchTab('portfolio')">Portfolio</div>
   <div class="bottom-tab" onclick="switchTab('transaction')">Transaction</div>
   <div class="bottom-tab" onclick="switchTab('reporting')">Reporting</div>
-  <div class="bottom-tab" onclick="switchTab('if-applicable')">If Applicable</div>
 </div>
 
 <script>
@@ -878,9 +823,6 @@ genBars('txn-vol-bars', ['#4A90D9'], [100], 31);
 genStacked('txn-onoff-stacked', ['#4A90D9','#F5C451'], [65,40], 31);
 
 // Reporting (table-only layout, no charts)
-
-// If Applicable
-genBars('appl-bars', ['#4A90D9','#D45B5B'], [60,20], 12);
 
 function switchVolTab(view) {
   document.getElementById('vol-tab-method').style.display = view === 'method' ? 'block' : 'none';
