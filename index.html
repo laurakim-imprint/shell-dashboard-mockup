@@ -436,12 +436,12 @@
     <div class="kpi-chart-row">
       <div class="kpi-sidebar">
         <div class="kpi-item">
-          <div class="kpi-item-label">Net Purchase Volume ($)</div>
+          <div class="kpi-item-label">Net Settled Volume ($)</div>
           <div class="kpi-item-value">$22.7M</div>
           <div class="kpi-item-note">aka Net Settled Volume = Gross Settled Volume - Settled Refunds and Disputes (REFUNDED) and Cancelled</div>
         </div>
         <div class="kpi-item">
-          <div class="kpi-item-label">Net Purchase Volume per Purchase Active Account ($)</div>
+          <div class="kpi-item-label">Net Settled Volume per Purchase Active Account ($)</div>
           <div class="kpi-item-value">$440</div>
           <div class="kpi-item-note">Net Settled Volume ($) / # purchase active accounts</div>
         </div>
@@ -449,7 +449,7 @@
       <div class="chart-area">
         <div class="daily-bars" id="txn-vol-bars"></div>
         <div class="legend-row" style="margin-top:8px;">
-          <div class="legend-chip"><div class="legend-color" style="background:var(--c1);"></div>Net Purchase Volume ($)</div>
+          <div class="legend-chip"><div class="legend-color" style="background:var(--c1);"></div>Net Settled Volume ($)</div>
         </div>
       </div>
     </div>
@@ -457,7 +457,7 @@
 
   <!-- Net purchase volume breakdowns -->
   <div class="section full-width">
-    <div class="section-header"><div class="section-title">Net Purchase Volume ($) - Breakdowns</div></div>
+    <div class="section-header"><div class="section-title">Net Settled Volume ($) - Breakdowns</div></div>
     <div class="sub-tabs">
       <div class="sub-tab active">By On- vs Off-Merchant</div>
       <div class="sub-tab">By Location of Merchants</div>
@@ -488,7 +488,7 @@
 
   <!-- By Purchase Method / By Card Type (toggled) -->
   <div class="section full-width">
-    <div class="section-header"><div class="section-title">Net Purchase Volume ($)</div></div>
+    <div class="section-header"><div class="section-title">Net Settled Volume ($)</div></div>
     <div class="sub-tabs" id="txn-vol-tabs">
       <div class="sub-tab active" onclick="switchVolTab('method')">By Purchase Method</div>
       <div class="sub-tab" onclick="switchVolTab('card')">By Card Type</div>
@@ -520,7 +520,7 @@
 
   <!-- Net purchase volume per purchase active account By Card Type -->
   <div class="section full-width">
-    <div class="section-header"><div class="section-title">Net Purchase Volume per Purchase Active Account - By Card Type</div></div>
+    <div class="section-header"><div class="section-title">Net Settled Volume per Purchase Active Account - By Card Type</div></div>
     <div class="section-body" style="padding-top:8px;">
       <div style="font-size:11px;color:#718096;margin-bottom:8px;">Net Settled Volume ($) / # purchase active accounts = Net Vol Per PAA ($)</div>
       <table class="sigma-table">
@@ -571,7 +571,7 @@
         <div style="font-size:10px;color:#a0aec0;margin-bottom:8px;">Co-Brand Payments = Net Interchange Income × 50% (Schedule 7.1(a))</div>
         <table class="sigma-table">
           <thead>
-            <tr><th>Report Ending Month</th><th class="num">PMI Net Purchase Volume</th><th class="num">Non-PMI Net Purchase Volume</th><th class="num">Other Net Purchase Volume</th><th class="num">Total Net Purchase Volume</th><th class="num">Co-Brand Payments</th><th class="num">Payments by Booking Rebate</th></tr>
+            <tr><th>Report Ending Month</th><th class="num">PMI Net Settled Volume</th><th class="num">Non-PMI Net Settled Volume</th><th class="num">Other Net Settled Volume</th><th class="num">Total Net Settled Volume</th><th class="num">Co-Brand Payments</th><th class="num">Payments by Booking Rebate</th></tr>
           </thead>
           <tbody>
             <tr><td>2025-07-31</td><td class="num">$12,350.00</td><td class="num">$7,420.00</td><td class="num">$15,830.00</td><td class="num">$35,600.00</td><td class="num">$890.00</td><td class="num">$16.50</td></tr>
