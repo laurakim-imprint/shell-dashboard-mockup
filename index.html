@@ -674,10 +674,27 @@
     </div>
   </div>
 
-  <!-- Quarterly Metrics (Fraud, Disputes, Complaints) -->
-  <div class="section full-width">
-    <div class="section-header"><div class="section-title">Quarterly Metrics</div></div>
+  <!-- Quarterly Metrics -->
+  <div class="section full-width" style="border-left:3px solid var(--c7);background:linear-gradient(to right,#f5f3ff,#fff 60%);">
+    <div class="section-header" style="display:flex;align-items:center;gap:8px;">
+      <div class="section-title">Quarterly Metrics</div>
+      <span style="display:inline-block;background:#EDE9FE;color:#6D28D9;font-size:9px;font-weight:700;padding:2px 7px;border-radius:2px;letter-spacing:0.5px;">QUARTERLY</span>
+    </div>
     <div class="section-body">
+      <div style="font-size:11px;color:#718096;margin-bottom:16px;">The following metrics are updated quarterly. SLA performance per Schedule 4.7.</div>
+
+      <!-- Performance of the SLAs (Schedule 4.7) -->
+      <div style="margin-bottom:28px;">
+        <div style="font-size:12px;font-weight:600;color:#1a202c;margin-bottom:8px;">Performance of the SLAs <span style="font-size:10px;color:#a0aec0;font-weight:400;">(Schedule 4.7)</span></div>
+        <table class="sigma-table">
+          <thead><tr><th>SLA Metric</th><th class="num">Current</th><th class="num">Target</th><th class="num">Status</th></tr></thead>
+          <tbody>
+            <tr><td>Call Center Response Time</td><td class="num">96.4%</td><td class="num">95.0%</td><td class="num" style="color:#38a169;">Met</td></tr>
+            <tr><td>Abandoned Call Rate</td><td class="num">3.2%</td><td class="num">≤5.0%</td><td class="num" style="color:#38a169;">Met</td></tr>
+            <tr><td>First Call Resolution</td><td class="num">88.7%</td><td class="num">85.0%</td><td class="num" style="color:#38a169;">Met</td></tr>
+          </tbody>
+        </table>
+      </div>
 
       <!-- Fraud Incidences (by quarter) -->
       <div style="margin-bottom:28px;">
@@ -712,7 +729,7 @@
       </div>
 
       <!-- Cardmember Complaints (by quarter) -->
-      <div>
+      <div style="margin-bottom:28px;">
         <div style="font-size:12px;font-weight:600;color:#1a202c;margin-bottom:8px;">Cardmember Complaints (by quarter)</div>
         <table class="sigma-table">
           <thead>
@@ -725,6 +742,20 @@
           </tbody>
         </table>
         <div style="font-size:10px;color:#a0aec0;margin-top:6px;">SUMMARY: 3 of 3 rows | 3 columns</div>
+      </div>
+
+      <!-- Quarterly Summary -->
+      <div>
+        <div style="font-size:12px;font-weight:600;color:#1a202c;margin-bottom:8px;">Quarterly Summary</div>
+        <table class="sigma-table">
+          <thead><tr><th>Metric</th><th class="num">Current Quarter</th><th class="num">Prior Quarter</th><th class="num">Change</th><th class="num">Trend</th></tr></thead>
+          <tbody>
+            <tr><td>Performance of the SLAs</td><td class="num">3/3 Met</td><td class="num">3/3 Met</td><td class="num" style="color:#38a169;">—</td><td class="num" style="color:#38a169;">On Track</td></tr>
+            <tr><td>Fraud Incidences (#)</td><td class="num">87</td><td class="num">99</td><td class="num" style="color:#38a169;">-12</td><td class="num" style="color:#38a169;">Improving</td></tr>
+            <tr><td>Confirmed Disputes (#)</td><td class="num">214</td><td class="num">196</td><td class="num" style="color:#e53e3e;">+18</td><td class="num" style="color:#e53e3e;">Watch</td></tr>
+            <tr><td>Cardmember Complaints (#)</td><td class="num">156</td><td class="num">179</td><td class="num" style="color:#38a169;">-23</td><td class="num" style="color:#38a169;">Improving</td></tr>
+          </tbody>
+        </table>
       </div>
 
     </div>
@@ -787,49 +818,6 @@
   </div>
 </div>
 
-<!-- ===================== QUARTERLY UPDATES ===================== -->
-<div class="tab-content" id="tab-quarterly">
-
-  <div class="section full-width">
-    <div class="section-header">
-      <div class="section-title">Quarterly Updates</div>
-    </div>
-    <div class="section-body">
-      <div style="font-size:12px;color:#718096;margin-bottom:16px;">The following information will be updated quarterly.</div>
-    </div>
-  </div>
-
-  <!-- Performance of the SLAs (Schedule 4.7) -->
-  <div class="section full-width">
-    <div class="section-header"><div class="section-title">Performance of the SLAs <span style="font-size:10px;color:#a0aec0;font-weight:400;">(Schedule 4.7)</span></div></div>
-    <div class="section-body" style="padding-top:8px;">
-      <table class="sigma-table">
-        <thead><tr><th>SLA Metric</th><th class="num">Current</th><th class="num">Target</th><th class="num">Status</th></tr></thead>
-        <tbody>
-          <tr><td>Call Center Response Time</td><td class="num">96.4%</td><td class="num">95.0%</td><td class="num" style="color:#38a169;">Met</td></tr>
-          <tr><td>Abandoned Call Rate</td><td class="num">3.2%</td><td class="num">≤5.0%</td><td class="num" style="color:#38a169;">Met</td></tr>
-          <tr><td>First Call Resolution</td><td class="num">88.7%</td><td class="num">85.0%</td><td class="num" style="color:#38a169;">Met</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- Summary table -->
-  <div class="section full-width">
-    <div class="section-header"><div class="section-title">Quarterly Summary</div></div>
-    <div class="section-body" style="padding-top:8px;">
-      <table class="sigma-table">
-        <thead><tr><th>Metric</th><th class="num">Current Quarter</th><th class="num">Prior Quarter</th><th class="num">Change</th><th class="num">Trend</th></tr></thead>
-        <tbody>
-          <tr><td>Performance of the SLAs</td><td class="num">3/3 Met</td><td class="num">3/3 Met</td><td class="num" style="color:#38a169;">—</td><td class="num" style="color:#38a169;">On Track</td></tr>
-          <tr><td>Fraud Incidences (#)</td><td class="num">87</td><td class="num">99</td><td class="num" style="color:#38a169;">-12</td><td class="num" style="color:#38a169;">Improving</td></tr>
-          <tr><td>Confirmed Disputes (#)</td><td class="num">214</td><td class="num">196</td><td class="num" style="color:#e53e3e;">+18</td><td class="num" style="color:#e53e3e;">Watch</td></tr>
-          <tr><td>Cardmember Complaints (#)</td><td class="num">156</td><td class="num">179</td><td class="num" style="color:#38a169;">-23</td><td class="num" style="color:#38a169;">Improving</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
 
 </div><!-- end main-content -->
 
@@ -840,7 +828,6 @@
   <div class="bottom-tab" onclick="switchTab('transaction')">Transaction</div>
   <div class="bottom-tab" onclick="switchTab('reporting')">Reporting</div>
   <div class="bottom-tab" onclick="switchTab('if-applicable')">If Applicable</div>
-  <div class="bottom-tab" onclick="switchTab('quarterly')">Quarterly Updates</div>
 </div>
 
 <script>
@@ -895,8 +882,6 @@ genStacked('txn-onoff-stacked', ['#4A90D9','#F5C451'], [65,40], 31);
 
 // If Applicable
 genBars('appl-bars', ['#4A90D9','#D45B5B'], [60,20], 12);
-
-// Quarterly Updates (tables only, no charts)
 
 function switchVolTab(view) {
   document.getElementById('vol-tab-method').style.display = view === 'method' ? 'block' : 'none';
