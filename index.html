@@ -731,31 +731,28 @@
   </div>
 </div>
 
-<!-- ===================== MONTHLY UPDATES ===================== -->
-<div class="tab-content" id="tab-monthly">
+<!-- ===================== QUARTERLY UPDATES ===================== -->
+<div class="tab-content" id="tab-quarterly">
 
   <div class="section full-width">
     <div class="section-header">
-      <div class="section-title">Monthly Updates</div>
+      <div class="section-title">Quarterly Updates</div>
     </div>
     <div class="section-body">
-      <div style="font-size:12px;color:#718096;margin-bottom:16px;">The following information will be updated monthly.</div>
+      <div style="font-size:12px;color:#718096;margin-bottom:16px;">The following information will be updated quarterly.</div>
     </div>
   </div>
 
-  <!-- Performance of the SLAs -->
+  <!-- Performance of the SLAs (Schedule 4.7) -->
   <div class="section full-width">
-    <div class="section-header"><div class="section-title">Performance of the SLAs</div></div>
+    <div class="section-header"><div class="section-title">Performance of the SLAs <span style="font-size:10px;color:#a0aec0;font-weight:400;">(Schedule 4.7)</span></div></div>
     <div class="section-body" style="padding-top:8px;">
       <table class="sigma-table">
         <thead><tr><th>SLA Metric</th><th class="num">Current</th><th class="num">Target</th><th class="num">Status</th></tr></thead>
         <tbody>
-          <tr><td>Application Processing</td><td class="num">98.7%</td><td class="num">98.0%</td><td class="num" style="color:#38a169;">Met</td></tr>
-          <tr><td>Card Delivery (7–10 bus. days)</td><td class="num">99.2%</td><td class="num">98.5%</td><td class="num" style="color:#38a169;">Met</td></tr>
-          <tr><td>Customer Service Response</td><td class="num">97.8%</td><td class="num">95.0%</td><td class="num" style="color:#38a169;">Met</td></tr>
-          <tr><td>Statement Delivery</td><td class="num">99.9%</td><td class="num">99.5%</td><td class="num" style="color:#38a169;">Met</td></tr>
-          <tr><td>System Availability</td><td class="num">99.8%</td><td class="num">99.5%</td><td class="num" style="color:#38a169;">Met</td></tr>
-          <tr><td>Fraud Reporting Timeliness</td><td class="num">99.1%</td><td class="num">98.0%</td><td class="num" style="color:#38a169;">Met</td></tr>
+          <tr><td>Call Center Response Time</td><td class="num">96.4%</td><td class="num">95.0%</td><td class="num" style="color:#38a169;">Met</td></tr>
+          <tr><td>Abandoned Call Rate</td><td class="num">3.2%</td><td class="num">≤5.0%</td><td class="num" style="color:#38a169;">Met</td></tr>
+          <tr><td>First Call Resolution</td><td class="num">88.7%</td><td class="num">85.0%</td><td class="num" style="color:#38a169;">Met</td></tr>
         </tbody>
       </table>
     </div>
@@ -769,11 +766,11 @@
         <div class="kpi-item">
           <div class="kpi-item-label">Fraud Incidences (#)</div>
           <div class="kpi-item-value">87</div>
-          <div class="kpi-item-note">vs prior month: -12</div>
+          <div class="kpi-item-note">vs prior quarter: -12</div>
         </div>
       </div>
       <div class="chart-area">
-        <div class="daily-bars" id="monthly-fraud-bars"></div>
+        <div class="daily-bars" id="quarterly-fraud-bars"></div>
         <div class="legend-row" style="margin-top:8px;">
           <div class="legend-chip"><div class="legend-color" style="background:var(--c6);"></div>Fraud Incidences</div>
         </div>
@@ -789,11 +786,11 @@
         <div class="kpi-item">
           <div class="kpi-item-label">Confirmed Disputes (#)</div>
           <div class="kpi-item-value">214</div>
-          <div class="kpi-item-note">vs prior month: +18</div>
+          <div class="kpi-item-note">vs prior quarter: +18</div>
         </div>
       </div>
       <div class="chart-area">
-        <div class="daily-bars" id="monthly-disputes-bars"></div>
+        <div class="daily-bars" id="quarterly-disputes-bars"></div>
         <div class="legend-row" style="margin-top:8px;">
           <div class="legend-chip"><div class="legend-color" style="background:var(--c5);"></div>Confirmed Disputes</div>
         </div>
@@ -809,11 +806,11 @@
         <div class="kpi-item">
           <div class="kpi-item-label">Cardmember Complaints (#)</div>
           <div class="kpi-item-value">156</div>
-          <div class="kpi-item-note">vs prior month: -23</div>
+          <div class="kpi-item-note">vs prior quarter: -23</div>
         </div>
       </div>
       <div class="chart-area">
-        <div class="daily-bars" id="monthly-complaints-bars"></div>
+        <div class="daily-bars" id="quarterly-complaints-bars"></div>
         <div class="legend-row" style="margin-top:8px;">
           <div class="legend-chip"><div class="legend-color" style="background:var(--c4);"></div>Cardmember Complaints</div>
         </div>
@@ -823,12 +820,12 @@
 
   <!-- Summary table -->
   <div class="section full-width">
-    <div class="section-header"><div class="section-title">Monthly Summary</div></div>
+    <div class="section-header"><div class="section-title">Quarterly Summary</div></div>
     <div class="section-body" style="padding-top:8px;">
       <table class="sigma-table">
-        <thead><tr><th>Metric</th><th class="num">Current Month</th><th class="num">Prior Month</th><th class="num">Change</th><th class="num">Trend</th></tr></thead>
+        <thead><tr><th>Metric</th><th class="num">Current Quarter</th><th class="num">Prior Quarter</th><th class="num">Change</th><th class="num">Trend</th></tr></thead>
         <tbody>
-          <tr><td>Performance of the SLAs</td><td class="num">6/6 Met</td><td class="num">6/6 Met</td><td class="num" style="color:#38a169;">—</td><td class="num" style="color:#38a169;">On Track</td></tr>
+          <tr><td>Performance of the SLAs</td><td class="num">3/3 Met</td><td class="num">3/3 Met</td><td class="num" style="color:#38a169;">—</td><td class="num" style="color:#38a169;">On Track</td></tr>
           <tr><td>Fraud Incidences (#)</td><td class="num">87</td><td class="num">99</td><td class="num" style="color:#38a169;">-12</td><td class="num" style="color:#38a169;">Improving</td></tr>
           <tr><td>Confirmed Disputes (#)</td><td class="num">214</td><td class="num">196</td><td class="num" style="color:#e53e3e;">+18</td><td class="num" style="color:#e53e3e;">Watch</td></tr>
           <tr><td>Cardmember Complaints (#)</td><td class="num">156</td><td class="num">179</td><td class="num" style="color:#38a169;">-23</td><td class="num" style="color:#38a169;">Improving</td></tr>
@@ -847,7 +844,7 @@
   <div class="bottom-tab" onclick="switchTab('transaction')">Transaction</div>
   <div class="bottom-tab" onclick="switchTab('reporting')">Reporting</div>
   <div class="bottom-tab" onclick="switchTab('if-applicable')">If Applicable</div>
-  <div class="bottom-tab" onclick="switchTab('monthly')">Monthly Updates</div>
+  <div class="bottom-tab" onclick="switchTab('quarterly')">Quarterly Updates</div>
 </div>
 
 <script>
@@ -903,10 +900,10 @@ genStacked('txn-onoff-stacked', ['#4A90D9','#F5C451'], [65,40], 31);
 // If Applicable
 genBars('appl-bars', ['#4A90D9','#D45B5B'], [60,20], 12);
 
-// Monthly Updates
-genBars('monthly-fraud-bars', ['#D45B5B'], [40], 12);
-genBars('monthly-disputes-bars', ['#E8845C'], [50], 12);
-genBars('monthly-complaints-bars', ['#F5C451'], [35], 12);
+// Quarterly Updates
+genBars('quarterly-fraud-bars', ['#D45B5B'], [40], 4);
+genBars('quarterly-disputes-bars', ['#E8845C'], [50], 4);
+genBars('quarterly-complaints-bars', ['#F5C451'], [35], 4);
 
 function switchVolTab(view) {
   document.getElementById('vol-tab-method').style.display = view === 'method' ? 'block' : 'none';
