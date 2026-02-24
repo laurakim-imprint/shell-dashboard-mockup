@@ -431,7 +431,36 @@
 <!-- ===================== TRANSACTION ===================== -->
 <div class="tab-content" id="tab-transaction">
 
-  <!-- Net purchase volume ($) - N/A breakdown -->
+  <!-- Settled Transactions -->
+  <div class="section full-width">
+    <div class="kpi-chart-row">
+      <div class="kpi-sidebar">
+        <div class="kpi-item">
+          <div class="kpi-item-label">Settled Transactions (#)</div>
+          <div class="kpi-item-value">509,216</div>
+          <div class="kpi-item-note">Total count of captured transactions (i.e. before refunds)</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-item-label">Avg Transaction Size ($)</div>
+          <div class="kpi-item-value">$261</div>
+        </div>
+      </div>
+      <div class="chart-area">
+        <div class="daily-bars" id="txn-settled-bars"></div>
+        <div class="chart-line-overlay">
+          <svg viewBox="0 0 600 160" preserveAspectRatio="none">
+            <polyline points="0,70 20,65 40,72 60,68 80,60 100,64 120,58 140,62 160,56 180,52 200,58 220,54 240,50 260,46 280,52 300,48 320,44 340,48 360,42 380,38 400,44 420,40 440,36 460,32 480,38 500,34 520,30 540,26 560,32 580,28 600,24" fill="none" stroke="#1a202c" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="legend-row" style="margin-top:8px;">
+          <div class="legend-chip"><div class="legend-color" style="background:var(--c1);"></div>Settled Transactions (#)</div>
+          <div class="legend-chip"><div style="width:12px;height:2px;background:#1a202c;border-radius:1px;"></div>Avg Transaction Size ($)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Net settled volume ($) - N/A breakdown -->
   <div class="section full-width">
     <div class="kpi-chart-row">
       <div class="kpi-sidebar">
@@ -854,6 +883,7 @@ genStacked('acq-apr-stacked', ['#4A90D9','#5BA8C8','#7EC8A0','#F5C451','#E8845C'
 genBars('port-bars', ['#4A90D9','#5BA8C8','#D45B5B','#F5C451'], [60,40,12,8], 12);
 
 // Transaction
+genBars('txn-settled-bars', ['#4A90D9'], [90], 31);
 genBars('txn-vol-bars', ['#4A90D9'], [100], 31);
 genStacked('txn-onoff-stacked', ['#4A90D9','#F5C451'], [60,44], 31);
 
