@@ -59,7 +59,13 @@
   /* DAILY BARS */
   .daily-bars { display: flex; align-items: flex-end; gap: 1px; height: 150px; border-bottom: 1px solid #e8ecf1; padding-bottom: 1px; }
   .daily-bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
-  .daily-bar { width: 100%; min-width: 3px; max-width: 12px; border-radius: 1px 1px 0 0; opacity: 0.85; }
+  .daily-bar { width: 100%; min-width: 3px; max-width: 24px; border-radius: 2px 2px 0 0; opacity: 0.85; }
+
+  /* DATE AXIS */
+  .date-axis { display: flex; gap: 1px; padding-top: 6px; }
+  .date-axis-cell { flex: 1; text-align: center; font-size: 10px; color: #6b7280; font-weight: 500; white-space: nowrap; overflow: visible; }
+  .stacked-date-axis { display: flex; gap: 2px; padding-top: 6px; }
+  .stacked-date-axis .date-axis-cell { flex: 1; max-width: 36px; }
   .chart-line-overlay { position: absolute; top: 10px; left: 16px; right: 16px; height: 150px; pointer-events: none; }
   .chart-line-overlay svg { width: 100%; height: 100%; }
 
@@ -79,7 +85,7 @@
   .donut-center-label .lbl { font-size: 9px; color: #b0b8c4; }
   .stacked-bar-area { flex: 1; }
   .stacked-bar-row { display: flex; height: 130px; align-items: flex-end; gap: 2px; }
-  .stacked-col { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; max-width: 18px; }
+  .stacked-col { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; max-width: 36px; }
   .stacked-seg { width: 100%; }
 
   /* LEGEND */
@@ -157,9 +163,9 @@
   <div class="filter-item">
     <span class="filter-label">Date Granularity</span>
     <div class="granularity-toggle">
-      <button class="gran-btn active">Day</button>
+      <button class="gran-btn">Day</button>
       <button class="gran-btn">Week</button>
-      <button class="gran-btn">Month</button>
+      <button class="gran-btn active">Month</button>
     </div>
   </div>
   <div class="filter-item">
@@ -791,6 +797,37 @@
 </div>
 
 <script>
+// Date axis helper: generates month-end labels starting from May 2026
+var MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+function lastDayOfMonth(year, month) {
+  // month is 0-indexed; returns the last day number
+  return new Date(year, month + 1, 0).getDate();
+}
+
+function formatMonthEndLabel(monthIndex) {
+  // monthIndex 0 = May 2026, 1 = Jun 2026, etc.
+  var startMonth = 4; // May (0-indexed)
+  var startYear = 2026;
+  var m = startMonth + monthIndex;
+  var y = startYear + Math.floor(m / 12);
+  m = m % 12;
+  var lastDay = lastDayOfMonth(y, m);
+  return MONTH_NAMES[m] + ' ' + lastDay;
+}
+
+function addDateAxis(parentEl, count, cssClass) {
+  var axis = document.createElement('div');
+  axis.className = cssClass || 'date-axis';
+  for (var i = 0; i < count; i++) {
+    var cell = document.createElement('div');
+    cell.className = 'date-axis-cell';
+    cell.textContent = formatMonthEndLabel(i);
+    axis.appendChild(cell);
+  }
+  parentEl.parentNode.insertBefore(axis, parentEl.nextSibling);
+}
+
 function genBars(id, colors, heights, count) {
   const el = document.getElementById(id);
   if (!el) return;
@@ -806,6 +843,7 @@ function genBars(id, colors, heights, count) {
     });
     el.appendChild(col);
   }
+  addDateAxis(el, count, 'date-axis');
 }
 function genStacked(id, colors, heights, count) {
   const el = document.getElementById(id);
@@ -823,24 +861,147 @@ function genStacked(id, colors, heights, count) {
     });
     el.appendChild(col);
   }
+  addDateAxis(el, count, 'stacked-date-axis');
 }
 
-// Acquisition
-genBars('acq-core-bars', ['#4A90D9','#5BA8C8','#7EC8A0','#F5C451'], [50,40,30,25], 31);
-genBars('acq-apr-bars', ['#4A90D9'], [80], 31);
-genStacked('acq-cl-stacked', ['#4A90D9','#5BA8C8','#7EC8A0','#F5C451','#E8845C'], [15,25,35,25,15], 31);
-genStacked('acq-apr-stacked', ['#4A90D9','#5BA8C8','#7EC8A0','#F5C451','#E8845C'], [30,25,20,15,10], 31);
+// --- Chart data table generator ---
+function addChartTable(barId, labels, data) {
+  var barEl = document.getElementById(barId);
+  if (!barEl) return;
+  var count = data[0].length;
+  var html = '<table class="sigma-table" style="margin-top:14px;"><thead><tr><th></th>';
+  for (var i = 0; i < count; i++) html += '<th class="num">' + formatMonthEndLabel(i) + '</th>';
+  html += '</tr></thead><tbody>';
+  labels.forEach(function(lbl, ri) {
+    html += '<tr><td style="white-space:nowrap;">' + lbl + '</td>';
+    data[ri].forEach(function(v) { html += '<td class="num">' + v + '</td>'; });
+    html += '</tr>';
+  });
+  html += '</tbody></table>';
+  var wrapper = document.createElement('div');
+  wrapper.innerHTML = html;
+  var tbl = wrapper.firstChild;
+  // Place table in the right container
+  var chartArea = barEl.closest('.chart-area');
+  if (chartArea) { chartArea.appendChild(tbl); return; }
+  var breakdownRow = barEl.closest('.breakdown-row');
+  if (breakdownRow) { breakdownRow.parentNode.appendChild(tbl); return; }
+  barEl.parentNode.appendChild(tbl);
+}
 
-// Portfolio
-genBars('port-active-bars', ['#4A90D9','#5BA8C8'], [60,40], 31);
-genBars('port-closed-bars', ['#D45B5B','#F5C451'], [15,10], 31);
+// ===================== ACQUISITION =====================
+genBars('acq-core-bars', ['#4A90D9','#5BA8C8','#7EC8A0','#F5C451'], [50,40,30,25], 10);
+addChartTable('acq-core-bars',
+  ['Submitted (#)', 'Valid Applications (#)', 'Approved Applications (#)', 'Booked Accounts (#)'],
+  [
+    ['820','1,050','1,280','1,470','1,580','1,690','1,810','1,920','1,780','1,830'],
+    ['725','930','1,130','1,295','1,395','1,490','1,595','1,690','1,570','1,595'],
+    ['530','685','830','955','1,025','1,095','1,170','1,245','1,155','1,180'],
+    ['490','635','770','885','950','1,015','1,085','1,150','1,070','1,095']
+  ]
+);
 
-// Transaction
-genBars('txn-vol-bars', ['#4A90D9'], [100], 31);
-genBars('txn-settled-bars', ['#4A90D9'], [90], 31);
-genStacked('txn-method-stacked', ['#4A90D9','#5BA8C8','#7EC8A0','#F5C451','#E8845C','#A0AEC0'], [8,28,5,42,10,7], 31);
-genStacked('txn-card-stacked', ['#4A90D9','#F5C451'], [63,37], 31);
-genStacked('txn-onoff-stacked', ['#4A90D9','#F5C451'], [55,45], 31);
+genBars('acq-apr-bars', ['#4A90D9'], [80], 10);
+addChartTable('acq-apr-bars',
+  ['Avg Credit Limit ($)', 'Avg APR (%)'],
+  [
+    ['$3,420','$3,510','$3,620','$3,710','$3,780','$3,830','$3,890','$3,950','$3,870','$3,920'],
+    ['31.2%','30.8%','30.4%','30.1%','29.8%','29.5%','29.3%','29.0%','29.2%','29.1%']
+  ]
+);
+
+genStacked('acq-cl-stacked', ['#4A90D9','#5BA8C8','#7EC8A0','#F5C451','#E8845C'], [15,25,35,25,15], 10);
+addChartTable('acq-cl-stacked',
+  ['300-579','580-669','670-739','740-799','800+'],
+  [
+    ['$1,850','$1,820','$1,790','$1,810','$1,780','$1,760','$1,740','$1,720','$1,750','$1,730'],
+    ['$2,450','$2,480','$2,510','$2,530','$2,560','$2,580','$2,600','$2,620','$2,590','$2,610'],
+    ['$3,800','$3,850','$3,900','$3,940','$3,980','$4,020','$4,060','$4,100','$4,050','$4,080'],
+    ['$5,200','$5,280','$5,360','$5,420','$5,480','$5,540','$5,600','$5,660','$5,610','$5,640'],
+    ['$7,500','$7,620','$7,740','$7,830','$7,910','$7,980','$8,050','$8,120','$8,060','$8,090']
+  ]
+);
+
+genStacked('acq-apr-stacked', ['#4A90D9','#5BA8C8','#7EC8A0','#F5C451','#E8845C'], [30,25,20,15,10], 10);
+addChartTable('acq-apr-stacked',
+  ['300-579','580-669','670-739','740-799','800+'],
+  [
+    ['36.2%','36.1%','36.0%','35.9%','35.8%','35.7%','35.6%','35.5%','35.6%','35.5%'],
+    ['34.5%','34.4%','34.2%','34.1%','34.0%','33.9%','33.8%','33.7%','33.8%','33.7%'],
+    ['30.8%','30.6%','30.4%','30.3%','30.1%','30.0%','29.8%','29.7%','29.8%','29.7%'],
+    ['27.5%','27.3%','27.1%','27.0%','26.8%','26.7%','26.5%','26.4%','26.5%','26.4%'],
+    ['25.2%','25.1%','25.0%','24.9%','24.8%','24.7%','24.6%','24.5%','24.6%','24.5%']
+  ]
+);
+
+// ===================== PORTFOLIO =====================
+genBars('port-active-bars', ['#4A90D9','#5BA8C8'], [60,40], 10);
+addChartTable('port-active-bars',
+  ['Purchase Active Accounts (#)', 'Balance Active Accounts (#)'],
+  [
+    ['38,200','40,150','42,800','45,100','47,300','49,100','50,800','52,400','51,200','51,640'],
+    ['22,400','24,800','27,100','29,200','30,800','32,100','33,400','34,600','34,100','34,290']
+  ]
+);
+
+genBars('port-closed-bars', ['#D45B5B','#F5C451'], [15,10], 10);
+addChartTable('port-closed-bars',
+  ['Closed Accounts (#)', 'Voluntary Closed Accounts (#)'],
+  [
+    ['85','110','125','145','160','175','185','195','175','175'],
+    ['60','78','88','102','112','123','130','137','123','122']
+  ]
+);
+
+// ===================== TRANSACTION =====================
+genBars('txn-vol-bars', ['#4A90D9'], [100], 10);
+addChartTable('txn-vol-bars',
+  ['Net Settled Volume ($)', 'Net Settled $ per PAA'],
+  [
+    ['$5.2M','$6.1M','$7.3M','$8.4M','$8.9M','$9.2M','$9.8M','$10.4M','$9.6M','$9.4M'],
+    ['$1,362','$1,419','$1,486','$1,542','$1,583','$1,610','$1,638','$1,672','$1,621','$1,633']
+  ]
+);
+
+genBars('txn-settled-bars', ['#4A90D9'], [90], 10);
+addChartTable('txn-settled-bars',
+  ['Settled Transactions (#)', 'Avg Transaction Size ($)'],
+  [
+    ['21,450','25,680','30,120','34,890','36,740','38,100','39,850','41,200','40,010','39,802'],
+    ['$242','$238','$242','$241','$242','$241','$246','$252','$240','$242']
+  ]
+);
+
+genStacked('txn-method-stacked', ['#4A90D9','#5BA8C8','#7EC8A0','#F5C451','#E8845C','#A0AEC0'], [8,28,5,42,10,7], 10);
+addChartTable('txn-method-stacked',
+  ['Chip','Contactless','Keyentry','Online','Swipe','Unknown'],
+  [
+    ['$416K','$488K','$584K','$672K','$712K','$736K','$784K','$832K','$768K','$752K'],
+    ['$1.46M','$1.71M','$2.04M','$2.35M','$2.49M','$2.58M','$2.74M','$2.91M','$2.69M','$2.63M'],
+    ['$260K','$305K','$365K','$420K','$445K','$460K','$490K','$520K','$480K','$470K'],
+    ['$2.18M','$2.56M','$3.07M','$3.53M','$3.74M','$3.86M','$4.12M','$4.37M','$4.03M','$3.95M'],
+    ['$520K','$610K','$730K','$840K','$890K','$920K','$980K','$1.04M','$960K','$940K'],
+    ['$364K','$427K','$511K','$588K','$623K','$644K','$686K','$728K','$672K','$658K']
+  ]
+);
+
+genStacked('txn-card-stacked', ['#4A90D9','#F5C451'], [63,37], 10);
+addChartTable('txn-card-stacked',
+  ['Visa Classic','Visa Signature'],
+  [
+    ['$3.28M','$3.84M','$4.60M','$5.29M','$5.61M','$5.80M','$6.17M','$6.55M','$6.05M','$5.92M'],
+    ['$1.92M','$2.26M','$2.70M','$3.11M','$3.29M','$3.40M','$3.63M','$3.85M','$3.55M','$3.48M']
+  ]
+);
+
+genStacked('txn-onoff-stacked', ['#4A90D9','#F5C451'], [55,45], 10);
+addChartTable('txn-onoff-stacked',
+  ['On-Merchant / PMI','Off-Merchant / Non-PMI'],
+  [
+    ['$2.86M','$3.36M','$4.02M','$4.62M','$4.90M','$5.06M','$5.39M','$5.72M','$5.28M','$5.17M'],
+    ['$2.34M','$2.74M','$3.28M','$3.78M','$4.00M','$4.14M','$4.41M','$4.68M','$4.32M','$4.23M']
+  ]
+);
 
 // Reporting (table-only layout, no charts)
 
